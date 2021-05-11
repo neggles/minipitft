@@ -8,6 +8,7 @@ DRV_NAME="minipitft"
 DRV_VERSION="0.1.0-0"
 
 # make git archive the repo to the right spot
+mkdir -p "/usr/src/${DRV_NAME}-${DRV_VERSION}"
 git archive HEAD | tar -x -C "/usr/src/${DRV_NAME}-${DRV_VERSION}"
 
 # run dkms

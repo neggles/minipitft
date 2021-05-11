@@ -19,7 +19,7 @@ save_dt_overlay()
 }
 
 save_dt_overlay "minipitft114.dtbo"
-if ($ret != 0); then exit $ret
+if ($ret != 0); then exit $ret; fi
 echo ""
 save_dt_overlay "minipitft13.dtbo"
 echo ""

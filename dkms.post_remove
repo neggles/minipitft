@@ -14,4 +14,4 @@ remove_dt_overlay()
 remove_dt_overlay "minipitft114.dtbo"
 remove_dt_overlay "minipitft13.dtbo"
 echo ""
-
+exit 0

@@ -17,9 +17,8 @@ install_dt_overlay()
 }
 
 install_dt_overlay "minipitft114.dtbo"
-if ($ret != 0); then exit $ret
-echo ""
+if ($ret != 0); then exit $ret; fi
+echo ''
 install_dt_overlay "minipitft13.dtbo"
-echo ""
+echo ''
 exit $ret
-
