@@ -1,7 +1,7 @@
+KDIR ?= /lib/modules/${kernelver}/build
 PWD := $(shell pwd)
 
-DTC_FLAGS   ?= -@
-DTC_INCLUDE := /lib/modules/${kernelver}/build/include
+DTC_INCLUDE := $(KDIR)/include
 
 dtbo-y  += minipitft114.dtbo
 dtbo-y  += minipitft13.dtbo
@@ -11,10 +11,11 @@ always-y += $(dtbo-y)
 clean-files := $(dtbo-y)
 
 all:
-	make -C /lib/modules/${kernelver}/build M=$(PWD) DTC_INCLUDE=${DTC_INCLUDE}
+	$(MAKE) -C $(KDIR) M=$(PWD) DTC_INCLUDE=$(DTC_INCLUDE)
 
 clean:
-	make -C /lib/modules/${kernelver}/build M=$(PWD) clean
+	$(MAKE) -C $(KDIR) M=$(PWD) clean
 
-install:
+install: $(modules_install)
+modules_install:
 	cp $(dtbo-y) /boot/overlays/

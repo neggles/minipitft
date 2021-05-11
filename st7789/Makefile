@@ -7,5 +7,6 @@ default:
 clean:
 	$(MAKE) -C $(KDIR) M=$$PWD clean
 
+install: $(modules_install)
 modules_install:
 	$(MAKE) -C $(KDIR) M=$$PWD modules_install

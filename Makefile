@@ -1,5 +1,4 @@
-
-KERNELRELEASE ?= `uname -r`
+# minipitft
 export kernelver ?= $(shell uname -r)
 export arch ?= $(shell uname -m)
 
@@ -11,12 +10,13 @@ INSTALLDIRS = $(DIRS:%=install-%)
 all: $(BUILDDIRS)
 $(DIRS): $(BUILDDIRS)
 $(BUILDDIRS):
-	$(MAKE) -C $(@:build-%=%) $(MAKECMDGOALS) KERNELRELEASE=$(KERNELRELEASE)
+	$(MAKE) -C $(@:build-%=%) $(MAKECMDGOALS)
 
 clean: $(CLEANDIRS)
 $(CLEANDIRS):
-	$(MAKE) -C $(@:clean-%=%) clean KERNELRELEASE=$(KERNELRELEASE)
+	$(MAKE) -C $(@:clean-%=%) $(MAKECMDGOALS)
 
 install: $(INSTALLDIRS)
+modules_install: $(INSTALLDIRS)
 $(INSTALLDIRS):
-	$(MAKE) -C $(@:install-%=%) install
+	$(MAKE) -C $(@:install-%=%) modules_install
