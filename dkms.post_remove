@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+remove_dt_overlay()
+{
+    local overlay=$1
+    local overlays_dir="/boot/overlays"
+
+    echo "$overlay:"
+    echo " - Uninstallation"
+    echo "   - Deleting from: ${overlays_dir}/"
+    rm -q ${overlays_dir}/${overlay}
+}
+
+remove_dt_overlay "minipitft114.dtbo"
+remove_dt_overlay "minipitft13.dtbo"
+echo ""
+

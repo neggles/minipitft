@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+ret=-1
+
+install_dt_overlay()
+{
+    local PWD=$(eval pwd)
+    local overlay=$1
+    local base_dir="${PWD%/*}/$kernelver/$arch/module"
+    local overlays_dir="/boot/overlays"
+
+    echo "${overlay}:"
+    echo " - Installation"
+    echo "   - Installing to ${overlays_dir}/"
+    cp "${base_dir}/${overlay}" "${overlays_dir}/"
+    ret=$?
+}
+
+install_dt_overlay "minipitft114.dtbo"
+if ($ret != 0); then exit $ret
+echo ""
+install_dt_overlay "minipitft13.dtbo"
+echo ""
+exit $ret
+

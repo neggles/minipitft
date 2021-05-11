@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+ret=-1
+
+save_dt_overlay()
+{
+    local PWD=$(eval pwd)
+    local overlay=$1
+    local build_dir="${PWD}/overlays"
+    local base_dir="${PWD%/build*}/${kernelver}/${arch}/module"
+
+    echo "${overlay}:"
+    echo " - Post build"
+    echo "   - Copying ${build_dir}/${overlay} to ${base_dir}/"
+    # HACK: not needed if this script is invoked by dkms
+    [ -d $base_dir ] || mkdir -p ${base_dir}
+    cp "${build_dir}/${overlay}" "${base_dir}/"
+    ret=$?
+}
+
+save_dt_overlay "minipitft114.dtbo"
+if ($ret != 0); then exit $ret
+echo ""
+save_dt_overlay "minipitft13.dtbo"
+echo ""
+exit $ret
+
