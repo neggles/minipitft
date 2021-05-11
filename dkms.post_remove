@@ -8,7 +8,7 @@ remove_dt_overlay()
     echo "$overlay:"
     echo " - Uninstallation"
     echo "   - Deleting from: ${overlays_dir}/"
-    rm -q ${overlays_dir}/${overlay}
+    rm -f ${overlays_dir}/${overlay}
 }
 
 remove_dt_overlay "minipitft114.dtbo"
