@@ -29,8 +29,8 @@ else
 dtparam=spi=on
 dtparam=i2c1=on
 dtparam=i2c_arm=on
-#dtoverlay=minipitft114,,rotate=3,fps=60
-#dtoverlay=minipitft13,,rotate=3,fps=60
+#dtoverlay=minipitft114,rotate=3,fps=60
+#dtoverlay=minipitft13,rotate=3,fps=60
 # --- end minipitft-dkms ${datestamp} ---
 EOF
     echo "done, uncomment your specific model in /boot/config.txt and enable force_hotplug if you need to"
