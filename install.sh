@@ -3,6 +3,16 @@ set -e
 ret=-1
 datestamp=`date -I`
 
+# version/name strings
+DRV_NAME="minipitft"
+DRV_VERSION="0.1.0-0"
+
+# make git archive the repo to the right spot
+git archive HEAD | tar -x -C "/usr/src/${DRV_NAME}-${DRV_VERSION}"
+
+# run dkms
+sudo dkms install "${DRV_NAME}/${DRV_VERSION}"
+
 # add config.txt
 if (grep -q 'added by minipitft-dkms' /boot/config.txt 2>/dev/null); then
     echo "Found existing dtoverlay line in /boot/config.txt, will not edit file"
@@ -25,4 +35,3 @@ EOF
 fi
 
 exit 0
-

@@ -22,9 +22,10 @@ install: $(INSTALLDIRS)
 modules_install: $(INSTALLDIRS)
 $(INSTALLDIRS):
 	$(MAKE) -C $(@:install-%=%) modules_install
+	./add_config.sh
 
 check_dkms:
 ifndef DKMS
-        $(error "DKMS is not installed, please apt install dkms")
+	$(error "DKMS is not installed, please apt install dkms")
 endif
-        echo "DKMS found at $(shell which dkms)"
+	echo "DKMS found at $(shell which dkms)"
