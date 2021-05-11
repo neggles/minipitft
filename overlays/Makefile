@@ -8,13 +8,13 @@ dtbo-y  += minipitft13.dtbo
 
 targets  += $(dtbo-y)
 always-y += $(dtbo-y)
+clean-files := $(dtbo-y)
 
 all:
 	make -C /lib/modules/${kernelver}/build M=$(PWD) DTC_INCLUDE=${DTC_INCLUDE}
 
 clean:
 	make -C /lib/modules/${kernelver}/build M=$(PWD) clean
-	rm $(dtbo-y)
 
 install:
 	cp $(dtbo-y) /boot/overlays/
